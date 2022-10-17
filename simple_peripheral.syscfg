@@ -1,0 +1,257 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --board "/ti/boards/CC26X2R1_LAUNCHXL" --product "simplelink_cc13x2_26x2_sdk@4.40.04.04"
+ * @versions {"tool":"1.9.0+2015","templates":null}
+ */
+
+/**
+ * Import the modules used in this configuration.
+ */
+const ble         = scripting.addModule("/ti/ble5stack/ble");
+const CCFG        = scripting.addModule("/ti/devices/CCFG");
+const rfdesign    = scripting.addModule("/ti/devices/radioconfig/rfdesign");
+const ADC         = scripting.addModule("/ti/drivers/ADC", {}, false);
+const ADC1        = ADC.addInstance();
+const ADC2        = ADC.addInstance();
+const AESCCM      = scripting.addModule("/ti/drivers/AESCCM");
+const AESCCM1     = AESCCM.addInstance();
+const AESCTRDRBG  = scripting.addModule("/ti/drivers/AESCTRDRBG");
+const AESCTRDRBG1 = AESCTRDRBG.addInstance();
+const AESECB      = scripting.addModule("/ti/drivers/AESECB");
+const AESECB1     = AESECB.addInstance();
+const ECDH        = scripting.addModule("/ti/drivers/ECDH");
+const ECDH1       = ECDH.addInstance();
+const GPIO        = scripting.addModule("/ti/drivers/GPIO", {}, false);
+const GPIO1       = GPIO.addInstance();
+const GPIO2       = GPIO.addInstance();
+const GPIO3       = GPIO.addInstance();
+const GPIO4       = GPIO.addInstance();
+const GPIO5       = GPIO.addInstance();
+const GPIO6       = GPIO.addInstance();
+const GPIO7       = GPIO.addInstance();
+const GPIO8       = GPIO.addInstance();
+const GPIO9       = GPIO.addInstance();
+const GPIO10      = GPIO.addInstance();
+const GPIO11      = GPIO.addInstance();
+const NVS         = scripting.addModule("/ti/drivers/NVS", {}, false);
+const NVS1        = NVS.addInstance();
+const NVS2        = NVS.addInstance();
+const Power       = scripting.addModule("/ti/drivers/Power");
+const RF          = scripting.addModule("/ti/drivers/RF");
+const RTOS        = scripting.addModule("/ti/drivers/RTOS");
+const SPI         = scripting.addModule("/ti/drivers/SPI", {}, false);
+const SPI1        = SPI.addInstance();
+const SPI2        = SPI.addInstance();
+const TRNG        = scripting.addModule("/ti/drivers/TRNG");
+const TRNG1       = TRNG.addInstance();
+const TRNG2       = TRNG.addInstance();
+const UART        = scripting.addModule("/ti/drivers/UART", {}, false);
+const UART1       = UART.addInstance();
+const Watchdog    = scripting.addModule("/ti/drivers/Watchdog", {}, false);
+const Watchdog1   = Watchdog.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+ble.lockProject                                           = true;
+ble.tbmActiveItemsOnly                                    = false;
+ble.disableDisplayModule                                  = true;
+ble.maxPDUSize                                            = 255;
+ble.maxPDUNum                                             = 16;
+ble.maxConnNum                                            = 1;
+ble.paramUpdateReq                                        = "GAP_UPDATE_REQ_ACCEPT_ALL";
+ble.sendParamsUpdateReq                                   = false;
+ble.randomAddress                                         = "EE:EE:00:00:00:00";
+ble.addressMode                                           = "ADDRMODE_PUBLIC";
+ble.deviceName                                            = "ESLO";
+ble.radioConfig.codeExportConfig.$name                    = "ti_devices_radioconfig_code_export_param0";
+ble.advSet1.$name                                         = "ti_ble5stack_broadcaster_advertisement_set0";
+ble.advSet1.advParam1.$name                               = "ti_ble5stack_broadcaster_advertisement_params0";
+ble.advSet1.advParam1.primIntMin                          = 500;
+ble.advSet1.advParam1.primIntMax                          = 500;
+ble.advSet1.advData1.$name                                = "ti_ble5stack_broadcaster_advertisement_data0";
+ble.advSet1.advData1.GAP_ADTYPE_FLAGS                     = true;
+ble.advSet1.advData1.advertisingFlags                     = ["GAP_ADTYPE_FLAGS_BREDR_NOT_SUPPORTED","GAP_ADTYPE_FLAGS_GENERAL"];
+ble.advSet1.advData1.GAP_ADTYPE_LOCAL_NAME_SHORT          = true;
+ble.advSet1.advData1.GAP_ADTYPE_16BIT_MORE                = true;
+ble.advSet1.advData1.numOfUUIDs16More                     = 1;
+ble.advSet1.advData1.UUID016More                          = 0xE000;
+ble.advSet1.advData1.shortenedLocalName                   = "ESLO";
+ble.advSet1.scanRes1.$name                                = "ti_ble5stack_broadcaster_advertisement_data1";
+ble.advSet1.scanRes1.GAP_ADTYPE_LOCAL_NAME_COMPLETE       = true;
+ble.advSet1.scanRes1.GAP_ADTYPE_SLAVE_CONN_INTERVAL_RANGE = true;
+ble.advSet1.scanRes1.GAP_ADTYPE_POWER_LEVEL               = true;
+ble.advSet1.scanRes1.minConnInterval                      = 15;
+ble.advSet1.scanRes1.maxConnInterval                      = 15;
+ble.advSet1.scanRes1.completeLocalName                    = "ESLO";
+ble.advSet2.$name                                         = "ti_ble5stack_broadcaster_advertisement_set1";
+ble.advSet2.advParam2.$name                               = "ti_ble5stack_broadcaster_advertisement_params1";
+ble.advSet2.advParam2.advType                             = "extended";
+ble.advSet2.advParam2.primIntMin                          = 500;
+ble.advSet2.advParam2.primIntMax                          = 500;
+ble.advSet2.advData2.$name                                = "ti_ble5stack_broadcaster_advertisement_data2";
+ble.advSet2.advData2.GAP_ADTYPE_FLAGS                     = true;
+ble.advSet2.advData2.advertisingFlags                     = ["GAP_ADTYPE_FLAGS_BREDR_NOT_SUPPORTED","GAP_ADTYPE_FLAGS_GENERAL"];
+ble.advSet2.advData2.GAP_ADTYPE_LOCAL_NAME_SHORT          = true;
+ble.advSet2.advData2.GAP_ADTYPE_16BIT_MORE                = true;
+ble.advSet2.advData2.numOfUUIDs16More                     = 1;
+ble.advSet2.advData2.UUID016More                          = 0xE000;
+ble.advSet2.advData2.shortenedLocalName                   = "ESLO";
+ble.advSet2.scanRes2.$name                                = "ti_ble5stack_broadcaster_advertisement_data3";
+ble.advSet2.scanRes2.GAP_ADTYPE_LOCAL_NAME_COMPLETE       = true;
+ble.advSet2.scanRes2.GAP_ADTYPE_SLAVE_CONN_INTERVAL_RANGE = true;
+ble.advSet2.scanRes2.GAP_ADTYPE_POWER_LEVEL               = true;
+ble.advSet2.scanRes2.minConnInterval                      = 15;
+ble.advSet2.scanRes2.maxConnInterval                      = 15;
+ble.advSet2.scanRes2.completeLocalName                    = "ESLO";
+
+CCFG.enableDCDC         = false;
+CCFG.ccfgTemplate.$name = "ti_devices_CCFGTemplate0";
+
+ADC1.$name                = "THERM";
+ADC1.adc.adcPin.$assign   = "boosterpack.6";
+ADC1.adcPinInstance.$name = "CONFIG_PIN_20";
+
+ADC2.$name                = "R_VBATT";
+ADC2.adc.adcPin.$assign   = "boosterpack.23";
+ADC2.adcPinInstance.$name = "CONFIG_PIN_4";
+
+AESCCM1.$name = "CONFIG_AESCCM0";
+
+AESCTRDRBG1.$name              = "CONFIG_AESCTRDRBG_0";
+AESCTRDRBG1.aesctrObject.$name = "CONFIG_AESCTR_0";
+
+AESECB1.$name = "CONFIG_AESECB0";
+
+ECDH1.$name = "CONFIG_ECDH0";
+
+GPIO1.$name             = "LED_0";
+GPIO1.outputStrength    = "Low";
+GPIO1.$hardware         = system.deviceData.board.components.LED_RED;
+GPIO1.pinInstance.$name = "CONFIG_PIN_0";
+
+GPIO2.$name                      = "_SHDN";
+GPIO2.mode                       = "Output";
+GPIO2.outputStrength             = "Low";
+GPIO2.gpioPin.$assign            = "boosterpack.32";
+GPIO2.pinInstance.$name          = "CONFIG_PIN_8";
+GPIO2.pinInstance.outputStrength = "Minimum";
+
+GPIO3.$name              = "_NAND_CS";
+GPIO3.$hardware          = system.deviceData.board.components.MX25R8035F.subComponents.SELECT;
+GPIO3.initialOutputState = "High";
+GPIO3.outputStrength     = "Low";
+GPIO3.pinInstance.$name  = "CONFIG_PIN_10";
+
+GPIO4.$name              = "_EEG_CS";
+GPIO4.initialOutputState = "High";
+GPIO4.outputStrength     = "Low";
+GPIO4.gpioPin.$assign    = "boosterpack.8";
+GPIO4.pinInstance.$name  = "CONFIG_PIN_11";
+
+GPIO5.$name                         = "_EEG_DRDY";
+GPIO5.interruptTrigger              = "Falling Edge";
+GPIO5.callbackFunction              = "eegDataReady";
+GPIO5.gpioPin.$assignAllowConflicts = "boosterpack.2";
+GPIO5.pinInstance.$name             = "CONFIG_PIN_13";
+
+GPIO6.$name             = "AXY_INT1";
+GPIO6.$hardware         = system.deviceData.board.components["BTN-1"];
+GPIO6.pull              = "None";
+GPIO6.pinInstance.$name = "CONFIG_PIN_16";
+
+GPIO7.$name             = "AXY_INT2";
+GPIO7.gpioPin.$assign   = "boosterpack.19";
+GPIO7.pinInstance.$name = "CONFIG_PIN_17";
+
+GPIO8.$name             = "DEBUG";
+GPIO8.$hardware         = system.deviceData.board.components["BTN-2"];
+GPIO8.interruptTrigger  = "None";
+GPIO8.pinInstance.$name = "CONFIG_PIN_21";
+GPIO8.gpioPin.$assign   = "boosterpack.12";
+
+GPIO9.$name             = "LED_1";
+GPIO9.outputStrength    = "Low";
+GPIO9.$hardware         = system.deviceData.board.components.LED_GREEN;
+GPIO9.pinInstance.$name = "CONFIG_PIN_9";
+
+GPIO10.$name              = "_AXY_CS";
+GPIO10.mode               = "Output";
+GPIO10.initialOutputState = "High";
+GPIO10.outputStrength     = "Low";
+GPIO10.gpioPin.$assign    = "boosterpack.18";
+GPIO10.pinInstance.$name  = "CONFIG_PIN_12";
+
+GPIO11.$name             = "_EEG_PWDN";
+GPIO11.mode              = "Output";
+GPIO11.gpioPin.$assign   = "boosterpack.5";
+GPIO11.pinInstance.$name = "CONFIG_PIN_14";
+
+NVS1.$name                    = "CONFIG_NVSINTERNAL";
+NVS1.internalFlash.$name      = "ti_drivers_nvs_NVSCC26XX0";
+NVS1.internalFlash.regionBase = 0x48000;
+NVS1.internalFlash.regionSize = 0x4000;
+
+NVS2.$name                    = "ESLO_NVS_0";
+NVS2.internalFlash.$name      = "ti_drivers_nvs_NVSCC26XX1";
+NVS2.internalFlash.regionBase = 0x4C000;
+
+Power.calibrateRCOSC_HF = false;
+
+RF.xoscNeeded = false;
+
+SPI1.$hardware             = system.deviceData.board.components.LP_SPI;
+SPI1.$name                 = "CONFIG_SPI";
+SPI1.sclkPinInstance.$name = "CONFIG_PIN_1";
+SPI1.sclkPinInstance.mode  = "Input";
+SPI1.misoPinInstance.$name = "CONFIG_PIN_2";
+SPI1.mosiPinInstance.$name = "CONFIG_PIN_3";
+SPI1.mosiPinInstance.mode  = "Input";
+
+SPI2.$name                 = "CONFIG_SPI_EEG";
+SPI2.spi.sclkPin.$assign   = "boosterpack.37";
+SPI2.spi.misoPin.$assign   = "boosterpack.31";
+SPI2.spi.mosiPin.$assign   = "boosterpack.36";
+SPI2.sclkPinInstance.$name = "CONFIG_PIN_5";
+SPI2.sclkPinInstance.mode  = "Input";
+SPI2.misoPinInstance.$name = "CONFIG_PIN_6";
+SPI2.mosiPinInstance.$name = "CONFIG_PIN_7";
+SPI2.mosiPinInstance.mode  = "Input";
+
+TRNG1.$name = "CONFIG_TRNG_0";
+
+TRNG2.$name = "CONFIG_TRNG_1";
+
+UART1.$name               = "CONFIG_UART_0";
+UART1.$hardware           = system.deviceData.board.components.XDS110UART;
+UART1.txPinInstance.$name = "CONFIG_PIN_15";
+UART1.rxPinInstance.$name = "CONFIG_PIN_18";
+
+Watchdog1.$name  = "CONFIG_WATCHDOG_0";
+Watchdog1.period = 70000;
+
+/**
+ * Pinmux solution for unlocked pins/peripherals. This ensures that minor changes to the automatic solver in a future
+ * version of the tool will not impact the pinmux you originally saw.  These lines can be completely deleted in order to
+ * re-solve from scratch.
+ */
+ADC1.adc.$suggestSolution              = "ADC0";
+ADC2.adc.$suggestSolution              = "ADC0";
+GPIO1.gpioPin.$suggestSolution         = "boosterpack.39";
+GPIO3.gpioPin.$suggestSolution         = "boosterpack.38";
+GPIO6.gpioPin.$suggestSolution         = "boosterpack.13";
+GPIO9.gpioPin.$suggestSolution         = "boosterpack.40";
+SPI1.spi.$suggestSolution              = "SSI0";
+SPI1.spi.sclkPin.$suggestSolution      = "boosterpack.7";
+SPI1.spi.misoPin.$suggestSolution      = "boosterpack.14";
+SPI1.spi.mosiPin.$suggestSolution      = "boosterpack.15";
+SPI1.spi.dmaRxChannel.$suggestSolution = "DMA_CH3";
+SPI1.spi.dmaTxChannel.$suggestSolution = "DMA_CH4";
+SPI2.spi.$suggestSolution              = "SSI1";
+SPI2.spi.dmaRxChannel.$suggestSolution = "DMA_CH16";
+SPI2.spi.dmaTxChannel.$suggestSolution = "DMA_CH17";
+UART1.uart.$suggestSolution            = "UART0";
+UART1.uart.txPin.$suggestSolution      = "boosterpack.4";
+UART1.uart.rxPin.$suggestSolution      = "boosterpack.3";
+Watchdog1.watchdog.$suggestSolution    = "WDT0";

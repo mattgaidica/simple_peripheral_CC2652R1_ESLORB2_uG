@@ -2313,6 +2313,11 @@ static void ESLO_performPeriodicTask() {
 	absoluteTime += (ES_PERIODIC_EVT_PERIOD / 1000);
 	iLog++;
 
+	readTherm();
+	eslo.type = Type_Therm;
+	eslo.data = temp_uC / 1000; // use mC
+	retEslo = ESLO_Write(&esloAddr, esloBuffer, esloVersion, eslo);
+
 	readBatt();
 	if (vbatt_uV < V_DROPOUT) {
 		esloSleep(); // good night
@@ -2323,11 +2328,6 @@ static void ESLO_performPeriodicTask() {
 		eslo.type = Type_BatteryVoltage;
 		eslo.data = vbatt_uV / 1000; // use mV
 		ESLO_Write(&esloAddr, esloBuffer, esloVersion, eslo);
-
-		readTherm();
-		eslo.type = Type_Therm;
-		eslo.data = temp_uC / 1000; // use mC
-		retEslo = ESLO_Write(&esloAddr, esloBuffer, esloVersion, eslo);
 
 		eslo.type = Type_AbsoluteTime;
 		eslo.data = absoluteTime;

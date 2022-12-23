@@ -1313,6 +1313,7 @@ static void ESLO_dumpMemUART() {
 		for (i = 0; i < PAGE_DATA_SIZE; i++) {
 			UART_write(uart, &readBuf[i], sizeof(uint8_t));
 			if (i == 0) {
+				GPIO_toggle(LED_0);
 				GPIO_toggle(LED_1);
 			}
 		}

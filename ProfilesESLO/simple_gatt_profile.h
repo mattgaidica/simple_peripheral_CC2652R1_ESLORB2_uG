@@ -87,7 +87,7 @@ extern "C"
 // Length of Characteristic in bytes
 #define SIMPLEPROFILE_CHAR1_LEN			  1		// LED_0-3
 #define SIMPLEPROFILE_CHAR2_LEN			  17	// vBatt, low battery status, therm, esloAddr, axyLog (uint8)
-#define SIMPLEPROFILE_CHAR3_LEN			  17	// settings
+#define SIMPLEPROFILE_CHAR3_LEN			  18	// settings
 #define SIMPLEPROFILE_CHAR4_LEN			  248 	// 62 int32, EEG (eslo packets)
 #define SIMPLEPROFILE_CHAR5_LEN           16	// !! was 128 AXY (eslo packets)
 #define SIMPLEPROFILE_CHAR6_LEN			  4		// Addr

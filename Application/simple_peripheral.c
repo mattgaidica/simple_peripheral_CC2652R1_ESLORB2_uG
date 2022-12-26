@@ -707,7 +707,8 @@ static void esloSleep() {
 
 static void mapEsloSettings(uint8_t *esloSettingsNew) {
 	eslo_dt eslo;
-	// resetVersion only comes from iOS, never maintains value (one and done)
+	ReturnType nandRet = Flash_ProgramFailed;
+	// resetVersion/stopRecording only comes from iOS, never maintains value (one and done)
 	if (esloSettingsNew[Set_ResetVersion] > 0) {
 		esloResetVersion();
 	}
@@ -782,6 +783,15 @@ static void mapEsloSettings(uint8_t *esloSettingsNew) {
 		esloSettings[Set_EEG3] = *(esloSettingsNew + Set_EEG3);
 		esloSettings[Set_EEG4] = *(esloSettingsNew + Set_EEG4);
 		updateEEGFromSettings(true);
+	}
+
+	if (esloSettingsNew[Set_WritePage] > 0) {
+		// write last page
+		while (nandRet == Flash_ProgramFailed) {
+			eslo.type = 0xFF;
+			eslo.data = 0xFFFFFFFF;
+			nandRet = ESLO_Write(&esloAddr, esloBuffer, esloVersion, eslo);
+		}
 	}
 
 // set and notify iOS, since export data now overrides some settings
@@ -1307,7 +1317,7 @@ static void ESLO_dumpMemUART() {
 	for (k = 0; k < 10; k++) {
 		UART_write(uart, &k, sizeof(uint8_t));
 	}
-
+	// dump chip memory
 	while (exportAddr < esloAddr) {
 		FlashPageRead(exportAddr, readBuf);
 		for (i = 0; i < PAGE_DATA_SIZE; i++) {
@@ -2307,16 +2317,18 @@ static void SimplePeripheral_notifyVitals(void) {
 
 static void ESLO_performPeriodicTask() {
 	eslo_dt eslo;
-	ReturnType retEslo;
+	ReturnType nandRet;
 
 	Watchdog_clear(watchdogHandle);
 	absoluteTime += (ES_PERIODIC_EVT_PERIOD / 1000);
 	iLog++;
 
-	readTherm();
-	eslo.type = Type_Therm;
-	eslo.data = temp_uC / 1000; // use mC
-	retEslo = ESLO_Write(&esloAddr, esloBuffer, esloVersion, eslo);
+	if (esloSettings[Set_Record] > 0) {
+		readTherm();
+		eslo.type = Type_Therm;
+		eslo.data = temp_uC >> 8; // / 1000; // use mC
+		ESLO_Write(&esloAddr, esloBuffer, esloVersion, eslo);
+	}
 
 	readBatt();
 	if (vbatt_uV < V_DROPOUT) {
@@ -2326,14 +2338,14 @@ static void ESLO_performPeriodicTask() {
 	}
 	if (iLog >= ES_LOG_PERIODIC) {
 		eslo.type = Type_BatteryVoltage;
-		eslo.data = vbatt_uV / 1000; // use mV
+		eslo.data = vbatt_uV >> 8; // / 1000; // use mV
 		ESLO_Write(&esloAddr, esloBuffer, esloVersion, eslo);
 
 		eslo.type = Type_AbsoluteTime;
 		eslo.data = absoluteTime;
-		ESLO_Write(&esloAddr, esloBuffer, esloVersion, eslo);
+		nandRet = ESLO_Write(&esloAddr, esloBuffer, esloVersion, eslo);
 
-		if (retEslo == Flash_MemoryOverflow) {
+		if (nandRet == Flash_MemoryOverflow) {
 			esloSleep(); // good night
 		}
 

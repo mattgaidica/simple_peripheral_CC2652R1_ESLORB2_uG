@@ -1136,8 +1136,7 @@ static void xlDataHandler(void) {
 			eslo_xlx.data = (uint32_t) xl_data[0];
 			ESLO_Packet(eslo_xlx, &packet);
 			xlXBuffer[iXL] = packet;
-			if (!isPaired
-					& (esloSettings[Set_Record] | esloSettings[Set_SWA] > 0)) {
+			if (esloSettings[Set_Record] | esloSettings[Set_SWA] > 0) { // !isPaired
 				ESLO_Write(&esloAddr, esloBuffer, esloVersion, eslo_xlx);
 			}
 
@@ -1145,8 +1144,7 @@ static void xlDataHandler(void) {
 			eslo_xly.data = (uint32_t) xl_data[1];
 			ESLO_Packet(eslo_xly, &packet);
 			xlYBuffer[iXL] = packet;
-			if (!isPaired
-					& (esloSettings[Set_Record] | esloSettings[Set_SWA] > 0)) {
+			if (esloSettings[Set_Record] | esloSettings[Set_SWA] > 0) {
 				ESLO_Write(&esloAddr, esloBuffer, esloVersion, eslo_xly);
 			}
 
@@ -1154,8 +1152,7 @@ static void xlDataHandler(void) {
 			eslo_xlz.data = (uint32_t) xl_data[2];
 			ESLO_Packet(eslo_xlz, &packet);
 			xlZBuffer[iXL] = packet;
-			if (!isPaired
-					& (esloSettings[Set_Record] | esloSettings[Set_SWA] > 0)) {
+			if (esloSettings[Set_Record] | esloSettings[Set_SWA] > 0) {
 				ESLO_Write(&esloAddr, esloBuffer, esloVersion, eslo_xlz);
 			}
 

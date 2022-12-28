@@ -110,6 +110,8 @@ CCFG.enableDCDC         = false;
 CCFG.ccfgTemplate.$name = "ti_devices_CCFGTemplate0";
 
 ADC1.$name                = "THERM";
+ADC1.referenceSource      = "VDDS";
+ADC1.referenceVoltage     = 1800000;
 ADC1.adc.adcPin.$assign   = "boosterpack.6";
 ADC1.adcPinInstance.$name = "CONFIG_PIN_20";
 
